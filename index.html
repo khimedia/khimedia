@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="KHI.MEDIA — Automotive, portrait, and creative photography.">
+<title>KHI.MEDIA | Photography</title>
+
+<style>
+:root {
+    --bg: #111113;
+    --white: #f5f5f5;
+    --red: #d63438;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body.menu-open { overflow: hidden; }
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+/* HEADER */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 5%;
+    background: rgba(10,10,12,.65);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -1.5px;
+}
+
+.logo span { color: var(--red); }
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-right a {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.hamburger {
+    font-size: 28px;
+    font-weight: 300;
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #111;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("images/hero.webp") center/cover no-repeat;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0,0,0,.50),
+        rgba(0,0,0,.65)
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 7vw, 100px);
+    letter-spacing: -3px;
+    line-height: 1.05;
+    margin: 0 0 25px;
+}
+
+.hero p {
+    font-size: clamp(13px, 1.5vw, 19px);
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.scroll-btn {
+    position: absolute;
+    z-index: 2;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--red);
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    transition: .3s;
+}
+
+.scroll-btn:hover { background: #ff5055; }
+
+/* PORTFOLIO */
+
+.work {
+    max-width: 1500px;
+    margin: auto;
+    padding: 110px 5%;
+    scroll-margin-top: 80px;
+}
+
+.work h2 {
+    font-size: clamp(38px, 5vw, 68px);
+    letter-spacing: -2px;
+    margin: 0 0 15px;
+}
+
+.section-subtitle {
+    color: #aaa;
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+.gallery {
+    columns: 4 240px;
+    column-gap: 10px;
+}
+
+.project {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 10px;
+    border: 0;
+    background: #222;
+    color: white;
+    overflow: hidden;
+    cursor: pointer;
+    break-inside: avoid;
+    text-align: left;
+}
+
+.project img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
+
+.project.wide img { aspect-ratio: 4/3; }
+.project.square img { aspect-ratio: 1/1; }
+
+.project:hover img { transform: scale(1.06); }
+
+.project-caption {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 24px;
+    background: linear-gradient(
+        transparent 30%,
+        rgba(0,0,0,.85)
+    );
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.project:hover .project-caption,
+.project:focus-visible .project-caption {
+    opacity: 1;
+}
+
+.project-caption strong {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.project-caption small {
+    color: #ddd;
+    letter-spacing: 1px;
+}
+
+/* ABOUT AND CONTACT */
+
+.info {
+    padding: 100px 7%;
+    background: #19191c;
+    text-align: center;
+    scroll-margin-top: 70px;
+}
+
+.info h2 {
+    font-size: clamp(35px, 5vw, 60px);
+    margin: 0 0 25px;
+}
+
+.info p {
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.9;
+    color: #bbb;
+}
+
+.contact { background: #101012; }
+
+.contact-link {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 16px 36px;
+    border: 1px solid white;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.contact-link:hover {
+    color: #111;
+    background: white;
+}
+
+/* SLIDE-OUT MENU */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 29;
+    background: rgba(0,0,0,.65);
+    opacity: 0;
+    visibility: hidden;
+    transition: .35s;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 30;
+    width: min(430px, 88vw);
+    height: 100vh;
+    height: 100dvh;
+    background: #f4f4f4;
+    color: #111;
+    padding: 95px 55px;
+    transform: translateX(100%);
+    transition: transform .4s ease;
+}
+
+.menu-open .menu-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-open .side-menu {
+    transform: translateX(0);
+}
+
+.close-menu {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    background: none;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.side-menu nav {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.side-menu nav a {
+    font-size: 25px;
+    font-weight: 800;
+    transition: color .2s;
+}
+
+.side-menu nav a:hover {
+    color: var(--red);
+}
+
+/* PROJECT DETAIL POPUP */
+
+.project-dialog {
+    width: min(900px, 92vw);
+    max-height: 90vh;
+    padding: 0;
+    border: 1px solid #333;
+    background: #18181b;
+    color: white;
+}
+
+.project-dialog::backdrop {
+    background: rgba(0,0,0,.9);
+}
+
+.project-dialog img {
+    display: block;
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    background: #0a0a0a;
+}
+
+.dialog-content { padding: 30px; }
+.dialog-content h2 { margin-top: 0; }
+.dialog-content p { color: #bbb; line-height: 1.7; }
+
+.close-dialog {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #111;
+    color: white;
+    border: 0;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+footer {
+    border-top: 1px solid #333;
+    text-align: center;
+    padding: 35px;
+    color: #888;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media(max-width: 700px) {
+    header { padding: 20px 5%; }
+    .logo { font-size: 22px; }
+    .nav-right > a { display: none; }
+    .hero h1 { letter-spacing: -2px; }
+    .hero p { letter-spacing: 1px; }
+    .work { padding: 75px 4%; }
+    .gallery { columns: 2 150px; }
+    .project-caption {
+        opacity: 1;
+        padding: 12px;
+    }
+    .project-caption strong { font-size: 15px; }
+    .side-menu { padding: 95px 35px; }
+}
+
+@media(max-width: 430px) {
+    .gallery { columns: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="#home" class="logo">KHI<span>.</span>MEDIA</a>
+
+    <div class="nav-right">
+        <a href="#work">WORK</a>
+        <a href="#about">ABOUT</a>
+
+        <button class="menu-btn" id="menuBtn"
+                aria-controls="sideMenu"
+                aria-expanded="false">
+            MENU <span class="hamburger">&#9776;</span>
+        </button>
+    </div>
+</header>
+
+<!-- SIDE MENU -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<aside class="side-menu" id="sideMenu" aria-label="Main menu">
+    <button class="close-menu" id="closeMenu"
+            aria-label="Close menu">&times;</button>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#work">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</aside>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Beyond the Ordinary.</h1>
+        <p>AUTOMOTIVE &bull; PORTRAITS &bull; CREATIVE</p>
+    </div>
+
+    <a class="scroll-btn" href="#work" aria-label="Explore portfolio">
+        &#8595;
+    </a>
+</section>
+
+<!-- PORTFOLIO -->
+<main>
+<section class="work" id="work">
+    <h2>Selected Work.</h2>
+    <p class="section-subtitle">
+        A collection of moments, machines, and people.
+    </p>
+
+    <div class="gallery">
+
+        <button class="project wide"
+                data-title="Automotive Stories"
+                data-description="An exploration of automotive design, character, and motion.">
+            <img src="images/photo1.webp" alt="Automotive photography">
+            <span class="project-caption">
+                <strong>Automotive Stories</strong>
+                <small>AUTOMOTIVE</small>
+            </span>
+        </button>
+
+        <button class="project"
+                data-title="Portrait Sessions"
+                data-description="Capturing personality through light and composition.">
+            <img src="images/photo2.webp" alt="Portrait photography">
+            <span class="project-caption">
+                <strong>Portrait Sessions</strong>
+                <small>PORTRAITS</small>
+            </span>
+        </button>
+
+        <button class="project square"
+                data-title="Details"
+                data-description="A closer look at the small details that define a subject.">
+            <img src="images/photo3.webp" alt="Detail photography">
+            <span class="project-caption">
+                <strong>Details</strong>
+                <small>AUTOMOTIVE</small>
+            </span>
+        </button>
+
+        <button class="project"
+                data-title="After Dark"
+                data-description="Creative photography after sunset.">
+            <img src="images/photo4.webp" alt="Night photography">
+            <span class="project-caption">
+                <strong>After Dark</strong>
+                <small>CREATIVE</small>
+            </span>
+        </button>
+
+        <button class="project wide"
+                data-title="On the Road"
+                data-description="Automotive images captured on location.">
+            <img src="images/photo5.webp" alt="Car photography on location">
+            <span class="project-caption">
+                <strong>On the Road</strong>
+                <small>AUTOMOTIVE</small>
+            </span>
+        </button>
+
+        <button class="project"
+                data-title="Creative Portraits"
+                data-description="Portrait photography with a focus on mood and visual storytelling.">
+            <img src="images/photo6.webp" alt="Creative portrait">
+            <span class="project-caption">
+                <strong>Creative Portraits</strong>
+                <small>PORTRAITS</small>
+            </span>
+        </button>
+
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="info" id="about">
+    <h2>Behind the Lens.</h2>
+    <p>
+        I'm Mekhi Powell, a photographer with a passion
+        for automotive culture, portraiture, and visual
+        storytelling. KHI.MEDIA is where creativity,
+        photography, and design come together.
+    </p>
+</section>
+
+<!-- CONTACT -->
+<section class="info contact" id="contact">
+    <h2>Let's Create Something.</h2>
+    <p>
+        Interested in a photoshoot or creative collaboration?
+        Let's bring your vision to life.
+    </p>
+
+    <!-- Replace this placeholder with your actual email -->
+    <a class="contact-link" href="mailto:YOUR_EMAIL@example.com">
+        GET IN TOUCH &rarr;
+    </a>
+</section>
+</main>
+
+<footer>
+    &copy; 2026 KHI.MEDIA. All Rights Reserved.
+</footer>
+
+<!-- PROJECT POPUP -->
+<dialog class="project-dialog" id="projectDialog">
+    <button class="close-dialog" id="closeDialog"
+            aria-label="Close project">&times;</button>
+
+    <img id="dialogImage" alt="Selected project photograph">
+
+    <div class="dialog-content">
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogDescription"></p>
+    </div>
+</dialog>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const closeMenuBtn = document.getElementById("closeMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+function toggleMenu(open) {
+    document.body.classList.toggle("menu-open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+}
+
+menuBtn.addEventListener("click", () => toggleMenu(true));
+closeMenuBtn.addEventListener("click", () => toggleMenu(false));
+menuOverlay.addEventListener("click", () => toggleMenu(false));
+
+document.querySelectorAll(".side-menu a").forEach(link => {
+    link.addEventListener("click", () => toggleMenu(false));
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") toggleMenu(false);
+});
+
+/* Clickable gallery */
+
+const dialog = document.getElementById("projectDialog");
+const dialogImage = document.getElementById("dialogImage");
+const dialogTitle = document.getElementById("dialogTitle");
+const dialogDescription = document.getElementById("dialogDescription");
+
+document.querySelectorAll(".project").forEach(project => {
+    project.addEventListener("click", () => {
+        const image = project.querySelector("img");
+
+        dialogImage.src = image.src;
+        dialogImage.alt = image.alt;
+        dialogTitle.textContent = project.dataset.title;
+        dialogDescription.textContent = project.dataset.description;
+
+        dialog.showModal();
+    });
+});
+
+document.getElementById("closeDialog").addEventListener(
+    "click", () => dialog.close()
+);
+
+dialog.addEventListener("click", event => {
+    if (event.target === dialog) dialog.close();
+});
+</script>
+
+</body>
+</html>
